@@ -44,43 +44,6 @@ class PlatzVerkaufsWerkzeugUI
         _hauptPanel = erstellePanel();
     }
 
-    public JDialog getDialogPanel()
-    {
-        Frame frame = (Frame) SwingUtilities.getRoot(_hauptPanel);
-        JDialog jp = new JDialog(frame, "Bla", true);
-        jp.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        jp.setLocationRelativeTo(frame);
-        jp.setSize(400, 250);
-        c.gridx = 0;
-        c.gridy = 0;
-        c.weightx = 0;
-        c.weighty = 0;
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.anchor = GridBagConstraints.NORTH;
-        TextField tf = new TextField();
-        jp.add(tf, c);
-        c.gridx = 0;
-        c.gridy = 1;
-        c.weightx = 0;
-        c.weighty = 0;
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.anchor = GridBagConstraints.NORTH;
-        Button okButton = new Button("OK");
-        jp.add(okButton, c);
-        Button abButton = new Button("Abbrechen");
-        c.gridx = 1;
-        c.gridy = 1;
-        c.weightx = 0;
-        c.weighty = 0;
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.anchor = GridBagConstraints.NORTH;
-        jp.add(abButton, c);
-
-        return jp;
-    }
-    
-
     /**
      * Erzeugt das Panel, in dem der Kinosaal mit den Sitzplätzen dargestellt
      * wird.

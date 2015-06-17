@@ -62,8 +62,7 @@ public class PlatzVerkaufsWerkzeug
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                JDialog jd = _ui.getDialogPanel();
-                jd.setVisible(true);
+                DialogPlatzVerkaufsWerkzeug dialog = new DialogPlatzVerkaufsWerkzeug(_ui.getUIPanel());
                 fuehreBarzahlungDurch();
             }
         });
