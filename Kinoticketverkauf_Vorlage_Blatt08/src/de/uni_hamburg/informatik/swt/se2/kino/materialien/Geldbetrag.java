@@ -62,6 +62,6 @@ public class Geldbetrag {
     
     public String getEuroCentString() 
     {
-    	return "" + _euro + "," + (_cent < 10 ? _cent + "0" : _cent);
+    	return "" + _euro + "," + (_cent < 10 ? (_cent < 0 ? _cent*-1 : _cent + "0") : _cent);
     }
 }
