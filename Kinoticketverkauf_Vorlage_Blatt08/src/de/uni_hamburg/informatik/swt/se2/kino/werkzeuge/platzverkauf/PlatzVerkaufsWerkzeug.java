@@ -62,8 +62,11 @@ public class PlatzVerkaufsWerkzeug
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                DialogPlatzVerkaufsWerkzeug dialog = new DialogPlatzVerkaufsWerkzeug(_ui.getUIPanel());
-                fuehreBarzahlungDurch();
+                BezahlWerkzeug dialog = new BezahlWerkzeug(_vorstellung, _ui.getPlatzplan().getAusgewaehltePlaetze(), _ui.getUIPanel());
+                if(dialog.getBezahlt())
+                {
+                	fuehreBarzahlungDurch();
+                }
             }
         });
 

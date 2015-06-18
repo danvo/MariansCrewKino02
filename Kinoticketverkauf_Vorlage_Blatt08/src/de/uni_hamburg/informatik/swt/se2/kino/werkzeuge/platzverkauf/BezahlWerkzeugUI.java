@@ -4,25 +4,31 @@ import java.awt.Button;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.TextField;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-public class DialogPlatzVerkaufsWerkzeugUI
+public class BezahlWerkzeugUI
 {
     JDialog _dialog;
     JPanel _hauptPanel;
+    JLabel _gesamtPreisLabel;
+    JLabel _restGeldLabel;
     JButton _okButton;
     JButton _abButton;
+    JFormattedTextField _bezahlField;
     
-    public DialogPlatzVerkaufsWerkzeugUI(JPanel hauptPanel)
+    public BezahlWerkzeugUI(JPanel hauptPanel)
     {
         _hauptPanel = hauptPanel;
         _dialog = getDialogPanel();
-        _dialog.show(true);
     }
 
     private JDialog getDialogPanel()
@@ -30,6 +36,8 @@ public class DialogPlatzVerkaufsWerkzeugUI
         Frame frame = (Frame) SwingUtilities.getRoot(_hauptPanel);
         JDialog jp = new JDialog(frame,"Bezahldialog", true);
         jp.setLayout(new GridBagLayout());
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         jp.setLocationRelativeTo(_hauptPanel);
         jp.setSize(400, 250);
@@ -37,26 +45,40 @@ public class DialogPlatzVerkaufsWerkzeugUI
         c.gridy = 0;
         c.weightx = 0;
         c.weighty = 0;
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.anchor = GridBagConstraints.NORTH;
-        TextField tf = new TextField();
-        jp.add(tf, c);
+        _gesamtPreisLabel = new JLabel();
+        panel.add(_gesamtPreisLabel);
+        
         c.gridx = 0;
         c.gridy = 1;
         c.weightx = 0;
         c.weighty = 0;
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.anchor = GridBagConstraints.NORTH;
-        _okButton = new JButton("OK");
-        jp.add(_okButton, c);
-        _abButton = new JButton("Abbrechen");
-        c.gridx = 1;
-        c.gridy = 1;
+        _bezahlField = new JFormattedTextField();
+        panel.add(_bezahlField, c);
+        
+        _restGeldLabel = new JLabel("Restgeld: ");
+        c.gridx = 0;
+        c.gridy = 2;
         c.weightx = 0;
         c.weighty = 0;
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.anchor = GridBagConstraints.NORTH;
-        jp.add(_abButton, c);
+        panel.add(_restGeldLabel, c);
+        
+        c.gridx = 0;
+        c.gridy = 3;
+        c.weightx = 1;
+        c.weighty = 0;
+        _okButton = new JButton("OK");
+        panel.add(_okButton, c);
+        
+        _abButton = new JButton("Abbrechen");
+        c.gridx = 1;
+        c.gridy = 3;
+        c.weightx = 0;
+        c.weighty = 0;
+        panel.add(_abButton, c);
+        
+        c.insets = new Insets(20, 20, 20, 20);
+        jp.add(panel,c);
 
         return jp;
     }
@@ -80,5 +102,18 @@ public class DialogPlatzVerkaufsWerkzeugUI
     {
         return _dialog;
     }
+    
+    public JLabel getGesamtPreisLabel()
+    {
+    	return _gesamtPreisLabel;
+    }
 
+    public JTextField getBezahlField()
+    {
+    	return _bezahlField;
+    }
+
+	public JLabel getRestGeldLabel() {
+		return _restGeldLabel;
+	}
 }
