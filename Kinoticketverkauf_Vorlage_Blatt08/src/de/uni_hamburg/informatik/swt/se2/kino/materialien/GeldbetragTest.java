@@ -20,6 +20,9 @@ public class GeldbetragTest {
         Geldbetrag gbS2 = new Geldbetrag("1");
         Geldbetrag gbS3 = new Geldbetrag("1,5");
         Geldbetrag gbS4 = new Geldbetrag("13,54");
+        Geldbetrag gbS5 = new Geldbetrag(-1524);
+        
+        assertEquals(-1524, gbS5.getEuroCentInt());
         
         
         assertEquals("10,54", gb.getEuroCentString());
@@ -49,5 +52,16 @@ public class GeldbetragTest {
     	
     	Geldbetrag gb2 = new Geldbetrag("15,00");
     	assertEquals(466, gb2.subtract("10,34").getEuroCentInt());
+    	
+    	Geldbetrag gb3 = new Geldbetrag("2,34");
+    	Geldbetrag gb4 = new Geldbetrag("5");
+    	assertEquals(-266, gb3.subtract(gb4).getEuroCentInt());
+    }
+    
+    @Test
+    public void testeGetString() 
+    {
+        Geldbetrag gb = new Geldbetrag(-344);
+        assertEquals("-3,44",gb.getEuroCentString());
     }
 }

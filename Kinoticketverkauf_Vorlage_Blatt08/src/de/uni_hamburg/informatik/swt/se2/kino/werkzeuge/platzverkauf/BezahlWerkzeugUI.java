@@ -43,10 +43,11 @@ public class BezahlWerkzeugUI
         jp.setSize(400, 250);
         c.gridx = 0;
         c.gridy = 0;
-        c.weightx = 0;
-        c.weighty = 0;
+        c.weightx = 1;
+        c.weighty = 1;
+        c.anchor = GridBagConstraints.NORTH;
         _gesamtPreisLabel = new JLabel();
-        panel.add(_gesamtPreisLabel);
+        panel.add(_gesamtPreisLabel, c);
         
         c.gridx = 0;
         c.gridy = 1;
