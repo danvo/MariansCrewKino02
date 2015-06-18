@@ -66,28 +66,19 @@ public class Geldbetrag {
     
     public String getEuroCentString() 
     {
-    	//return "" + _euro + "," + (_cent < 10 ? (_cent < 0 ? (_cent < -9 ? _cent*-1 : "0" + _cent*-1) : "0" + _cent) : _cent);
+    	//return "" + (_cent < 0 ? "-" : "" ) + _euro + "," + (_cent < 10 ? (_cent < 0 ? (_cent < -9 ? _cent*-1 : "0" + _cent*-1) : "0" + _cent) : _cent);
     	
-    	String cent = "" + _cent;
-    	
-    	if(_cent < -9)
+    	String cent = "" + Math.abs(_cent);
+    	String vorzeichen = "";
+    	if(_cent > -10 && _cent < 10)
     	{
-    		cent = "" + _cent*-1;
+    		cent = "0" + Math.abs(_cent);
     	}
-    	
-    	else if(_cent < 0)
+    	if (_cent < 0) 
     	{
-    		cent = "0" + _cent*-1;
+    		vorzeichen = "-";
     	}
-    	
-    	else if(_cent < 10)
-    	{
-    		cent = "0" + _cent;
-    	}
-    	
-    	return "" + _euro + "," + cent; 
-    	
-    	
+    	return "" + vorzeichen + _euro + "," + cent; 
     }
     
    
