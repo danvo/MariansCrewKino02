@@ -75,7 +75,7 @@ public class BezahlWerkzeug
 		});
         _ui.getBezahlField().addKeyListener(new KeyListener() {
 
-        	Pattern p = Pattern.compile("[0-9]*,{0,1}[0-9]{0,2}");
+        	Pattern p = Pattern.compile("[0-9]++,{0,1}[0-9]{0,2}");
         	String undo;
         	int pos;
         	boolean keypressed = false;
@@ -85,7 +85,7 @@ public class BezahlWerkzeug
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
-				if (!p.matcher(_ui.getBezahlField().getText()).matches())
+				if (!p.matcher(_ui.getBezahlField().getText()).matches() && !_ui.getBezahlField().getText().equals(""))
 				{
 					pos = _ui.getBezahlField().getCaretPosition()-1;
 					_ui.getBezahlField().setText(undo);
@@ -95,6 +95,7 @@ public class BezahlWerkzeug
 						_ui.getBezahlField().setCaretPosition(_ui.getBezahlField().getText().length());;
 					}
 				}
+				if (_ui.getBezahlField().getText().length() > 8) _ui.getBezahlField().setText(undo);
 				undo = _ui.getBezahlField().getText();
 				updateRestgeld();
 			}

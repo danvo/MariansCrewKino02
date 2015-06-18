@@ -1,5 +1,7 @@
 package de.uni_hamburg.informatik.swt.se2.kino.materialien;
 
+import java.util.regex.Pattern;
+
 public class Geldbetrag {
 	
 	int _euro;
@@ -17,6 +19,8 @@ public class Geldbetrag {
 	
     private int parseString(String eurocent)
     {
+    	//Pattern p = Pattern.compile("[0-9]++,{0,1}[0-9]{0,2}");
+    	//if (!p.matcher(eurocent).matches()) return 0;
     	int euro = 0;
     	int cent = 0;
     	if (!eurocent.equals(""))
@@ -62,6 +66,8 @@ public class Geldbetrag {
     
     public String getEuroCentString() 
     {
-    	return "" + _euro + "," + (_cent < 10 ? (_cent < 0 ? _cent*-1 : _cent + "0") : _cent);
+    	return "" + _euro + "," + (_cent < 10 ? (_cent < 0 ? (_cent < -9 ? _cent*-1 : "0" + _cent*-1) : "0" + _cent) : _cent);
     }
+    
+    
 }
