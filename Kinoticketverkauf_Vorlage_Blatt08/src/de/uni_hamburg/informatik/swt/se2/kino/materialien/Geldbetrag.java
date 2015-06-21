@@ -74,7 +74,7 @@ public class Geldbetrag {
     	{
     		cent = "0" + Math.abs(_cent);
     	}
-    	if (_cent < 0) 
+    	if (_cent < 0 && _euro == 0) 
     	{
     		vorzeichen = "-";
     	}
