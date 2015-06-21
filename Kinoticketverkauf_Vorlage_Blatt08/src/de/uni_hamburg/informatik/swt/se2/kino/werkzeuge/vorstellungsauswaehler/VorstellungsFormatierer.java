@@ -8,7 +8,7 @@ import de.uni_hamburg.informatik.swt.se2.kino.materialien.Vorstellung;
  * @author SE2-Team
  * @version SoSe 2015
  */
-class VorstellungsFormatierer
+public class VorstellungsFormatierer
 {
     private Vorstellung _vorstellung;
 
@@ -29,6 +29,13 @@ class VorstellungsFormatierer
     Vorstellung getVorstellung()
     {
         return _vorstellung;
+    }
+    
+    public String dialogFormat() 
+    {
+        return  _vorstellung.getFilm().getFormatiertenString() + "\n"+
+                _vorstellung.getAnfangszeit().getFormatiertenString() + " - "
+                + _vorstellung.getKinosaal().getName();
     }
 
     @Override

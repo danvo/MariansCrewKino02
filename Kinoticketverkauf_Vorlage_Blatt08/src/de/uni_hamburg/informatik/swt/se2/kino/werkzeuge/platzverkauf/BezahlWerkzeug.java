@@ -1,11 +1,15 @@
 package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.platzverkauf;
 
 import java.awt.Color;
+import java.awt.ComponentOrientation;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,6 +17,8 @@ import java.util.regex.Pattern;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
@@ -20,6 +26,7 @@ import javax.swing.SwingConstants;
 import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Platz;
 import de.uni_hamburg.informatik.swt.se2.kino.materialien.Geldbetrag;
 import de.uni_hamburg.informatik.swt.se2.kino.materialien.Vorstellung;
+import de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.vorstellungsauswaehler.VorstellungsFormatierer;
 
 public class BezahlWerkzeug 
 {
@@ -38,14 +45,38 @@ public class BezahlWerkzeug
     	_gesamtPreis = new Geldbetrag(_vorstellung.getPreisFuerPlaetze(_plaetze));
         _ui = new BezahlWerkzeugUI(hauptPanel);
         registriereUIAktionen();
+        initialisiereUIAktionen();
         updateUI();
         updateRestgeld();
         _ui.getDialog().show();
     }
 
+    private void initialisiereUIAktionen()
+    {
+        JPanel panel = _ui.getDetailPayPanel();
+        GridLayout layout = _ui.getGridLayout();
+        JDialog jd = _ui.getDialog();
+        for (Platz platz : _plaetze)
+        {
+            layout.setRows(layout.getRows()+1);
+            Set<Platz> set = new HashSet<Platz>();
+            set.add(platz);
+            String[] headings =  {"Erwachsener", ""+(platz.getReihe()+1), ""+platz.getSitz(), 
+                    _vorstellung.getPreisGeldbetragFuerPlaetze(set).getEuroCentString()+"€"};
+            for (String string : headings)
+            {
+                JLabel label = new JLabel(string);
+                label.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+                panel.add(label);
+            }
+            jd.setSize(jd.getWidth(), jd.getHeight() + 20);
+        }
+        _ui.getVorstellungLabel().setText( new VorstellungsFormatierer(_vorstellung).toString());
+    }
+
     private void updateUI() 
     {
-    	_ui.getGesamtPreisLabel().setText("Der Gesamtpreis beträgt: " + _gesamtPreis.getEuroCentString() + "€");
+    	_ui.getGesamtPreisLabel().setText(_gesamtPreis.getEuroCentString() + "€");
 	}
     
     public boolean getBezahlt() 
@@ -118,7 +149,7 @@ public class BezahlWerkzeug
 	private void updateRestgeld() {
 		Geldbetrag eingezahlt = new Geldbetrag(_ui.getBezahlField().getText());
 		int restgeld = eingezahlt.subtract(_gesamtPreis).getEuroCentInt();
-		_ui.getRestGeldLabel().setText("<html>" + "Restgeld: " + "<font color=" + (restgeld >= 0 ? "green" : "red") + ">" 
+		_ui.getRestGeldLabel().setText("<html><font color=" + (restgeld >= 0 ? "green" : "red") + ">" 
 							+ eingezahlt.subtract(_gesamtPreis).getEuroCentString() + "€" +"</font></html>"); 
 		_ui.getOkButton().setEnabled(restgeld >= 0);
 	}

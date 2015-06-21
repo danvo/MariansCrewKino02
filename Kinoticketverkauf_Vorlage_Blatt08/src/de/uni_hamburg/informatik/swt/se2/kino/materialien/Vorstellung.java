@@ -193,6 +193,14 @@ public class Vorstellung
 
         return _preis * plaetze.size();
     }
+    
+    public Geldbetrag getPreisGeldbetragFuerPlaetze(Set<Platz> plaetze)
+    {
+        assert hatPlaetze(plaetze) : "Vorbedingung verletzt: hatPlaetze(plaetze)";
+
+        return new Geldbetrag(_preis * plaetze.size());
+    }
+
 
     /**
      * Verkauft einen Platz.
