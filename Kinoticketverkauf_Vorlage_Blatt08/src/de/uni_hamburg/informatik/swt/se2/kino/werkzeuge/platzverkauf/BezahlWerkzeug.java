@@ -24,6 +24,7 @@ import de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.vorstellungsauswaehler.V
 public class BezahlWerkzeug {
 	private BezahlWerkzeugUI _ui;
 	private boolean _bezahlt;
+	private boolean _bezahlbar;
 	private Vorstellung _vorstellung;
 	private Set<Platz> _plaetze;
 	private Geldbetrag _gesamtPreis;
@@ -175,6 +176,12 @@ public class BezahlWerkzeug {
 				"<html><font color=" + (restgeld >= 0 ? "green" : "red") + ">"
 						+ eingezahlt.subtract(_gesamtPreis).getEuroCentString()
 						+ "€" + "</font></html>");
-		_ui.getOkButton().setEnabled(restgeld >= 0);
+        _ui.getOkButton().setEnabled(restgeld >= 0);
+        _bezahlbar = (restgeld >= 0);
 	}
+
+    public boolean getBezahlbar()
+    {
+        return _bezahlbar;
+    }
 }

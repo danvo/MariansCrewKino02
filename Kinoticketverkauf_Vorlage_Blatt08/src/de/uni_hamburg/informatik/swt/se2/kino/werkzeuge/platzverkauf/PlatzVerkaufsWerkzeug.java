@@ -61,7 +61,7 @@ public class PlatzVerkaufsWerkzeug
             public void actionPerformed(ActionEvent e)
             {
                 BezahlWerkzeug dialog = new BezahlWerkzeug(_vorstellung, _ui.getPlatzplan().getAusgewaehltePlaetze(), _ui.getUIPanel());
-                if(dialog.getBezahlt())
+                if(dialog.getBezahlt() && dialog.getBezahlbar())
                 {
                 	fuehreBarzahlungDurch();
                 }
