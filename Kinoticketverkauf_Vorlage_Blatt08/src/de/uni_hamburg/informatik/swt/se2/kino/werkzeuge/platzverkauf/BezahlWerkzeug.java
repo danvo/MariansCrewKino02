@@ -106,10 +106,9 @@ public class BezahlWerkzeug
 		});
         _ui.getBezahlField().addKeyListener(new KeyListener() {
 
-        	Pattern p = Pattern.compile("[0-9]++,{0,1}[0-9]{0,2}");
+        	Pattern p = Pattern.compile("[0-9]*,{0,1}[0-9]{0,2}");
         	String undo;
         	int pos;
-        	boolean keypressed = false;
 			@Override
 			public void keyTyped(KeyEvent e) {
 			}

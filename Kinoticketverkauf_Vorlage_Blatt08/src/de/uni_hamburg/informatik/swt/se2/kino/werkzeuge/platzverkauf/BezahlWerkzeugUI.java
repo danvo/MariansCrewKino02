@@ -23,6 +23,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 public class BezahlWerkzeugUI
@@ -54,10 +55,8 @@ public class BezahlWerkzeugUI
         GridBagConstraints c = new GridBagConstraints();
         jp.setLocationRelativeTo(_hauptPanel);
         jp.setSize(450, 250);
-        //jp.setResizable(false);
-        //panel.setBackground(Color.WHITE);
        
-        _vorstellungLabel = new JLabel("18:00 - Rio - Saal 5 - ");
+        _vorstellungLabel = new JLabel("DEFAULT: 18:00 - Rio - Saal 5");
         _vorstellungLabel.setFont(_vorstellungLabel.getFont().deriveFont(Font.BOLD));
         c.gridx = 0;
         c.gridy = 0;
@@ -77,7 +76,6 @@ public class BezahlWerkzeugUI
             _detailPayPanel.add(label);
         }
         
-        //_detailPayPanel.setBackground(Color.YELLOW);
         _detailPayPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         c.gridx = 0;
         c.gridy = 1;
@@ -89,7 +87,6 @@ public class BezahlWerkzeugUI
         panel.add(_detailPayPanel, c);
         
         JPanel simplePayPanel = new JPanel(new GridBagLayout());
-        //simplePayPanel.setBackground(Color.WHITE);
 
         JLabel gesamtPreisStringLabel = new JLabel("Gesamtpreis");
         c.gridx = 0;
@@ -113,14 +110,20 @@ public class BezahlWerkzeugUI
         c.insets = new Insets(0, 0, 10, 0);
         simplePayPanel.add(_bezahlFieldLabel,c);
         
+        FlowLayout flowLayout = new FlowLayout(FlowLayout.LEADING, 0, 0);
+        JPanel bezahlFieldPanel = new JPanel(flowLayout);
+        JLabel euroLabel = new JLabel("€");
+        
         _bezahlField = new JFormattedTextField();
+        _bezahlField.setHorizontalAlignment(SwingConstants.RIGHT);
         _bezahlField.setColumns(6);
+        bezahlFieldPanel.add(_bezahlField);
+        bezahlFieldPanel.add(euroLabel);
         c.gridx = 1;
         c.gridy = 1;
         c.weightx = 0.3;
         c.weighty = 0;
-        //c.fill = GridBagConstraints.HORIZONTAL;
-        simplePayPanel.add(_bezahlField, c);
+        simplePayPanel.add(bezahlFieldPanel, c);
         
         JLabel restGeldStringLabel = new JLabel("Restgeld");
         restGeldStringLabel.setFont(restGeldStringLabel.getFont().deriveFont(Font.BOLD));
@@ -143,7 +146,6 @@ public class BezahlWerkzeugUI
         
         
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.TRAILING, 10, 10));
-        //buttonPanel.setBackground(Color.CYAN);
         _abButton = new JButton("Abbrechen");
         buttonPanel.add(_abButton);
         _okButton = new JButton("OK");
