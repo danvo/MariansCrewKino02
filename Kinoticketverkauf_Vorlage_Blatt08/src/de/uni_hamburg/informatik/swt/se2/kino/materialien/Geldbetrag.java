@@ -30,8 +30,12 @@ public class Geldbetrag {
     	int cent = 0;
     	if (!eurocent.equals(""))
     	{
+    	    int komma = eurocent.indexOf(",");
     		String[] geldArray = eurocent.split(",");
-    		euro = Integer.valueOf(geldArray[0]);
+    		if (komma != 0)
+    		{
+    		    euro = Integer.valueOf(geldArray[0]);
+    		}
     		if (geldArray.length == 2) 
     		{
     			cent = Integer.valueOf(geldArray[1]);
