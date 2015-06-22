@@ -1,24 +1,12 @@
 package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.platzverkauf;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.FlowLayout;
-import java.awt.Frame;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.TextField;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
 /**
  * Die UI des {@link PlatzVerkaufsWerkzeug}.
@@ -29,7 +17,7 @@ import javax.swing.SwingUtilities;
 class PlatzVerkaufsWerkzeugUI
 {
     // Die Widgets, aus denen das UI sich zusammensetzt
-    private JPanel _bezahlDialog;
+//    private JPanel _bezahlDialog;
     private JPanel _hauptPanel;
     private JLabel _preisLabel;
     private JButton _verkaufenButton;

@@ -1,7 +1,5 @@
 package de.uni_hamburg.informatik.swt.se2.kino.materialien;
 
-import java.util.regex.Pattern;
-
 public class Geldbetrag {
 	
 	int _euro;

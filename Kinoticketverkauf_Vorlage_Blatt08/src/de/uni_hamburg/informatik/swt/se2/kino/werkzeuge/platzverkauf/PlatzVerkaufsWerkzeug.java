@@ -5,8 +5,6 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Set;
 
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Platz;

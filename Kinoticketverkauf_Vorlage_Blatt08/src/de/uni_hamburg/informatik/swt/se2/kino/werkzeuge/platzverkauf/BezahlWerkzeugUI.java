@@ -1,10 +1,7 @@
 package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.platzverkauf;
 
-import java.awt.Button;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.ComponentOrientation;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Frame;
@@ -12,10 +9,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
-import java.awt.Label;
-import java.awt.TextField;
-import java.util.ArrayList;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -45,7 +38,11 @@ public class BezahlWerkzeugUI
         _hauptPanel = hauptPanel;
         _dialog = getDialogPanel();
     }
-
+    
+    /**
+     * Intialisiert das DialogPanel und gibt es zurück.
+     * @return JDialog
+     */
     private JDialog getDialogPanel()
     {
         Frame frame = (Frame) SwingUtilities.getRoot(_hauptPanel);
@@ -163,50 +160,89 @@ public class BezahlWerkzeugUI
         return jp;
     }
     
+    /**
+     * Gibt den OK-Button zurück.
+     * @return JButton
+     */
     public JButton getOkButton()
     {
         return _okButton;
     }
     
+    /**
+     * Gibt den Abbrechen-Button zurück.
+     * @return JButton
+     */
     public JButton getAbButton()
     {
         return _abButton;
     }
     
+    /**
+     * Macht den Dialog sichtbar.
+     */
     public void showDialog() 
     {
         _dialog.setVisible(true);
     }
     
+    /**
+     * Gibt den Dialog zurück.
+     * @return JButton
+     */
     public JDialog getDialog() 
     {
         return _dialog;
     }
     
+    /**
+     * Gibt den Gesamtpreis zurück.
+     * @return JLabel
+     */
     public JLabel getGesamtPreisLabel()
     {
     	return _gesamtPreisLabel;
     }
 
+    /**
+     * Gibt das Bezahlfeld zurück.
+     * @return JTextfield
+     */
     public JTextField getBezahlField()
     {
     	return _bezahlField;
     }
 
+    /**
+     * Gibt das Restgeldlabel zurück.
+     * @return JLabel
+     */
 	public JLabel getRestGeldLabel() {
 		return _restGeldLabel;
 	}
 	
+	/**
+     * Gibt das DetailPayPanel zurück.
+     * @return JPanel
+     */
 	public JPanel getDetailPayPanel() 
 	{
 	    return _detailPayPanel;
 	}
 
+	/**
+     * Gibt den Layoutmanager zurück.
+     * @return Gridlayout
+     */
     public GridLayout getGridLayout()
     {
         return _gridLayout;
     }
 
+    /**
+     * Gibt das Vorstellungslabel zurück.
+     * @return JLabel
+     */
     public JLabel getVorstellungLabel()
     {
         return _vorstellungLabel;
