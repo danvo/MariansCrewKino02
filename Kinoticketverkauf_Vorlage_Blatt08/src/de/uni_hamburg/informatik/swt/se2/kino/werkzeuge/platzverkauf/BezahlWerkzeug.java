@@ -153,6 +153,15 @@ public class BezahlWerkzeug {
 				_ui.getOkButton().doClick();
 			}
 		});
+	      _ui.getBezahlField().getInputMap(JComponent.WHEN_FOCUSED)
+	          .put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "cancelDialog");
+	      _ui.getBezahlField().getActionMap().put("cancelDialog", new AbstractAction() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+          _ui.getAbButton().doClick();
+      }
+  });
 		_ui.getOkButton().setEnabled(false);
 	}
 	
