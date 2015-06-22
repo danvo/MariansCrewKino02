@@ -20,7 +20,6 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
@@ -49,7 +48,9 @@ public class BezahlWerkzeug
         initialisiereUIAktionen();
         updateUI();
         updateRestgeld();
+
         _ui.getDialog().show();
+
     }
 
     private void initialisiereUIAktionen()
@@ -116,19 +117,18 @@ public class BezahlWerkzeug
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
-			    JTextField bezahlField = _ui.getBezahlField();
-				if (!p.matcher(bezahlField.getText()).matches() && bezahlField.getText().equals(""))
+				if (!p.matcher(_ui.getBezahlField().getText()).matches() && !_ui.getBezahlField().getText().equals(""))
 				{
-					pos = bezahlField.getCaretPosition()-1;
-					bezahlField.setText(undo);
+					pos = _ui.getBezahlField().getCaretPosition()-1;
+					_ui.getBezahlField().setText(undo);
 					try {
-					    bezahlField.setCaretPosition(pos);
+						_ui.getBezahlField().setCaretPosition(pos);
 					} catch (Exception e2) {
-					    bezahlField.setCaretPosition(bezahlField.getText().length());;
+						_ui.getBezahlField().setCaretPosition(_ui.getBezahlField().getText().length());;
 					}
 				}
-				if (bezahlField.getText().length() > 8) bezahlField.setText(undo);
-				undo = bezahlField.getText();
+				if (_ui.getBezahlField().getText().length() > 8) _ui.getBezahlField().setText(undo);
+				undo = _ui.getBezahlField().getText();
 				updateRestgeld();
 			}
 			@Override
@@ -143,6 +143,14 @@ public class BezahlWerkzeug
 				_ui.getOkButton().doClick();
 			}
 		});
+        _ui.getBezahlField().getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "cancelDialog");
+        _ui.getBezahlField().getActionMap().put("cancelDialog", new AbstractAction() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                _ui.getAbButton().doClick();
+            }
+        });
 		_ui.getOkButton().setEnabled(false);
     }
 	

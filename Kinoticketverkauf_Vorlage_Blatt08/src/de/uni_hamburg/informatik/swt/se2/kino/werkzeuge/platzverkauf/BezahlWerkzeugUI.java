@@ -1,10 +1,7 @@
 package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.platzverkauf;
 
-import java.awt.Button;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.ComponentOrientation;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Frame;
@@ -12,9 +9,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
-import java.awt.Label;
-import java.awt.TextField;
-import java.util.ArrayList;
+import java.awt.Point;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -51,12 +46,16 @@ public class BezahlWerkzeugUI
     private JDialog getDialogPanel()
     {
         Frame frame = (Frame) SwingUtilities.getRoot(_hauptPanel);
+        Point point = _hauptPanel.getLocation();
         JDialog jp = new JDialog(frame,"Bezahldialog", true);
         _mainPanel = new JPanel();
         _mainPanel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
-        jp.setLocationRelativeTo(_hauptPanel);
         jp.setSize(450, 250);
+        jp.setResizable(false);
+        jp.setLocationRelativeTo(null);
+        jp.setLocation((int)point.getX() +_hauptPanel.getWidth()/2 - jp.getX()/2, 
+                (int)point.getY() + _hauptPanel.getHeight()/2 - jp.getY()/2); // Zentriert das Dialog relavtiv zum Hauptpanel
        
         initializeVorstellungsLabel(c);
         
@@ -67,7 +66,7 @@ public class BezahlWerkzeugUI
         initializeButtons(c);
        
         jp.add(_mainPanel);
-
+        
         return jp;
     }
 
