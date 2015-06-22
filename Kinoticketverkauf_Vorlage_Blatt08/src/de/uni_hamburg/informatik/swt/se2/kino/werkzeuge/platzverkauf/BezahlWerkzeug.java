@@ -20,6 +20,7 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
@@ -115,21 +116,21 @@ public class BezahlWerkzeug
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
-				if (!p.matcher(_ui.getBezahlField().getText()).matches() && !_ui.getBezahlField().getText().equals(""))
+			    JTextField bezahlField = _ui.getBezahlField();
+				if (!p.matcher(bezahlField.getText()).matches() && bezahlField.getText().equals(""))
 				{
-					pos = _ui.getBezahlField().getCaretPosition()-1;
-					_ui.getBezahlField().setText(undo);
+					pos = bezahlField.getCaretPosition()-1;
+					bezahlField.setText(undo);
 					try {
-						_ui.getBezahlField().setCaretPosition(pos);
+					    bezahlField.setCaretPosition(pos);
 					} catch (Exception e2) {
-						_ui.getBezahlField().setCaretPosition(_ui.getBezahlField().getText().length());;
+					    bezahlField.setCaretPosition(bezahlField.getText().length());;
 					}
 				}
-				if (_ui.getBezahlField().getText().length() > 8) _ui.getBezahlField().setText(undo);
-				undo = _ui.getBezahlField().getText();
+				if (bezahlField.getText().length() > 8) bezahlField.setText(undo);
+				undo = bezahlField.getText();
 				updateRestgeld();
 			}
-			// Bug bei gehaltetem Keypress
 			@Override
 			public void keyPressed(KeyEvent e) {
 			}
